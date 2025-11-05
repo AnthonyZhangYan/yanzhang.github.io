@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Personal Homepage</title>
+  <meta name="description" content="Academic personal homepage" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff; --fg:#0f172a; --muted:#475569; --link:#2563eb; --card:#f8fafc; --border:#e2e8f0;
+      --accent:#111827; --badge:#eef2ff;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{ --bg:#0b0f1a; --fg:#e5e7eb; --muted:#9ca3af; --link:#93c5fd; --card:#0f1626; --border:#1f2937; --accent:#f9fafb; --badge:#111827; }
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Apple Color Emoji','Segoe UI Emoji';}
+    .container{max-width:860px;margin:0 auto;padding:28px 20px 120px;}
+    header{display:flex;align-items:center;gap:22px;margin-bottom:18px;}
+    header img{width:84px;height:84px;border-radius:16px;object-fit:cover;border:1px solid var(--border);background:#fff}
+    h1{font-size:28px;margin:0 0 6px 0;letter-spacing:0.2px}
+    .subtitle{color:var(--muted);font-size:15px}
+    .contact a{color:var(--link);text-decoration:none;margin-right:14px}
+    .nav{display:flex;gap:14px;margin:18px 0 10px 0;flex-wrap:wrap}
+    .nav a{padding:8px 12px;border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--fg);font-size:14px;background:var(--card)}
+    section{margin-top:28px}
+    section h2{font-size:20px;margin:0 0 14px 0}
+    .news li{margin:6px 0;color:var(--muted)}
+    .pub{padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--card);margin:12px 0}
+    .pub .title{font-weight:600}
+    .pub .venue{font-size:13px;color:var(--muted)}
+    .pub .authors{font-size:14px;color:var(--muted)}
+    .pub .links a{margin-right:10px;color:var(--link);text-decoration:none}
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{background:var(--badge);color:var(--accent);border-radius:999px;padding:4px 10px;font-size:12px;border:1px solid var(--border)}
+    footer{margin-top:56px;color:var(--muted);font-size:13px}
+    .hr{height:1px;background:var(--border);margin:18px 0}
+    .misc ul{margin:0;padding-left:20px}
+    .misc li{margin:6px 0}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:var(--card);padding:2px 6px;border-radius:6px;border:1px solid var(--border);font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <a href="#about">主页</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#misc">Misc</a>
+    </div>
+
+    <header id="about">
+      <img src="avatar.jpg" alt="Avatar" onerror="this.style.display='none'"/>
+      <div>
+        <h1 id="name">Your Name</h1>
+        <div class="subtitle" id="title">Ph.D. Student @ Florida State University</div>
+        <div class="subtitle" id="affil">Department of Computer Science</div>
+        <div class="contact" style="margin-top:8px">
+          <a id="email" href="mailto:your.name@fsu.edu">your.name@fsu.edu</a>
+          <a id="scholar" href="https://scholar.google.com/citations?user=nAh7B5EAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <a id="github" href="https://github.com/yourid" target="_blank" rel="noopener">GitHub</a>
+          <a id="linkedin" href="https://www.linkedin.com/in/yourid" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="chips" style="margin-top:10px">
+          <span class="chip">Graph Learning</span>
+          <span class="chip">Data Mining</span>
+          <span class="chip">LLMs</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="bio">
+      <h2>Bio</h2>
+      <p>
+        我目前是佛罗里达州立大学（FSU）计算机科学系的研究生，研究兴趣包括 <b>图学习</b>、<b>数据挖掘</b> 与 <b>大型语言模型</b>。此前在 <i>（你的上一学历/工作经历）</i> 任职/就读。
+      </p>
+    </section>
+
+    <section id="news">
+      <h2>News</h2>
+      <ul class="news" id="news-list">
+        <li>2025-11：个人主页首次上线 🎉</li>
+        <li>2025-10：Paper A 被 NeurIPS 接收。</li>
+        <li>2025-05：加入 FSU XXX 实验室。</li>
+      </ul>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <div id="pubs"></div>
+    </section>
+
+    <section id="misc" class="misc">
+      <h2>Misc</h2>
+      <ul>
+        <li>爱好：FPS 游戏、桌游、旅行、摄影。</li>
+        <li>欢迎合作与交流，邮件联系即可。</li>
+      </ul>
+    </section>
+
+    <footer>
+      <div class="hr"></div>
+      <div>© <span id="year"></span> Your Name. Built with ❤️ and a dash of AI. · <span class="kbd">index.html</span> 单文件即可部署（GitHub Pages/静态服务器）。</div>
+    </footer>
+  </div>
+
+  <script>
+    // === 1) 快速自定义：改这里 ===
+    const PROFILE = {
+      name: 'Your Name',
+      title: 'Ph.D. Student @ Florida State University',
+      affil: 'Department of Computer Science',
+      email: 'your.name@fsu.edu',
+      scholar: 'https://scholar.google.com/citations?user=nAh7B5EAAAAJ&hl=en',
+      github: 'https://github.com/yourid',
+      linkedin: 'https://www.linkedin.com/in/yourid',
+      interests: ['Graph Learning','Data Mining','LLMs']
+    };
+
+    // Publications：在这里按从新到旧列出即可
+    // 每条：title, venue, authors, links: [{name,url}]
+    const PUBLICATIONS = [
+      {
+        title: 'CEGA: A Cost-Effective Approach for Graph-Based Model Extraction Attacks',
+        venue: 'ICML 2025',
+        authors: 'Zebin Wang, Menghan Lin, Bolin Shen, Ken Anderson, Molei Liu, Tianxi Cai, Yushun Dong',
+        links: [ {name:'PDF', url:'https://arxiv.org/abs/xxxx.xxxxx'}, {name:'Code', url:'https://github.com/xxxx'} ]
+      },
+      {
+        title: 'ATOM: Detecting Query-Based Model Extraction Attacks for GNNs',
+        venue: 'KDD 2025',
+        authors: 'Zhan Cheng, Bolin Shen, Tianming Sha, Yuan Gao, Shibo Li, Yushun Dong',
+        links: [ {name:'PDF', url:'https://arxiv.org/abs/yyyy.yyyyy'} ]
+      }
+    ];
+
+    // === 2) 自动填充 ===
+    document.getElementById('name').textContent = PROFILE.name;
+    document.getElementById('title').textContent = PROFILE.title;
+    document.getElementById('affil').textContent = PROFILE.affil;
+    document.getElementById('email').textContent = PROFILE.email;
+    document.getElementById('email').href = 'mailto:' + PROFILE.email;
+    document.getElementById('scholar').href = PROFILE.scholar;
+    document.getElementById('github').href = PROFILE.github;
+    document.getElementById('linkedin').href = PROFILE.linkedin;
+
+    // interests chips
+    const chipsWrap = document.querySelector('.chips');
+    chipsWrap.innerHTML = '';
+    PROFILE.interests.forEach(t=>{
+      const s = document.createElement('span'); s.className='chip'; s.textContent=t; chipsWrap.appendChild(s);
+    });
+
+    // pubs render
+    const mount = document.getElementById('pubs');
+    PUBLICATIONS.forEach(p=>{
+      const el = document.createElement('div'); el.className='pub';
+      el.innerHTML = `
+        <div class="title">${p.title}</div>
+        <div class="venue">${p.venue}</div>
+        <div class="authors">${p.authors}</div>
+        <div class="links">${(p.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.name}</a>`).join('')}</div>
+      `;
+      mount.appendChild(el);
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
