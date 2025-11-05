@@ -45,6 +45,8 @@
     .me{ text-decoration: underline; text-underline-offset: 3px; font-weight:700; }
     /* For more authors */
     .more-authors{ text-decoration: underline dotted; cursor: pointer; }
+    /* For PDF Highlighting*/
+    .links a:nth-child(2) { font-weight:600; }
   </style>
 </head>
 <body>
@@ -216,7 +218,12 @@
             ? `${highlightAuthors(p.authors)}, <span class="more-authors" role="button" aria-expanded="false">…</span><span class="more-authors-text" style="display:none"> ${highlightAuthors(p.moreAuthors)}</span>`
             : highlightAuthors(p.authors)
         }</div>
-        <div class="links">${(p.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.name}</a>`).join('')}</div>
+        <div class="links">${(p.links||[]).map(l=>{
+          const isPDF = /pdf/i.test(l.name);
+          const safeURL = typeof l.url === 'string' ? l.url.replace(/\s/g, '%20') : '';
+          // 只有同源/允许跨域下载的链接，download 才会真正触发保存；外站(如期刊)可能被浏览器忽略
+          return `<a href="${safeURL}" target="_blank" rel="noopener noreferrer" ${isPDF ? 'download' : ''} ${isPDF ? 'type="application/pdf"' : ''}>${l.name}</a>`;
+        }).join('')}</div>
       `;
       mount.appendChild(el);
     });
