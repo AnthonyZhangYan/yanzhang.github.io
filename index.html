@@ -196,7 +196,7 @@
       const el = document.createElement('div'); el.className='pub';
       el.innerHTML = `
         <div class="title">${p.title}</div>
-        <div class="venue">${p.venue}</div>
+        <div class="venue">${[p.year, p.venue].filter(Boolean).join(' — ')}</div>
         <div class="authors">${highlightAuthors(p.authors)}</div>
         <div class="links">${(p.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.name}</a>`).join('')}</div>
       `;
