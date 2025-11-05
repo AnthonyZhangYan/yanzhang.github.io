@@ -27,8 +27,11 @@
       --news-pane-h: 180px;   /* News 面板高度 */
       --pubs-pane-h: 360px;   /* Publications 面板高度 */
       --pane: #e6ebf3;
-      --shadow-card: 0 1px 2px rgba(0,0,0,.06);
-      --shadow-pane: 0 4px 12px rgba(0,0,0,.06);
+      --shadow-card: 0 1px 3px rgba(15,23,42,.12), 0 6px 12px rgba(15,23,42,.10);
+      --shadow-pane: 0 6px 20px rgba(15,23,42,.14);
+      --scroll-thumb: rgba(15,23,42,.45);   /* 深一点 */
+      --scroll-thumb-hover: rgba(15,23,42,.65);
+      --scroll-track: rgba(15,23,42,.08);   /* 轨道浅灰 */
     }
     @media (prefers-color-scheme: dark){
       :root{
@@ -44,8 +47,11 @@
         --doi-border: rgba(52,211,153,0.35);
         --arxiv-border: rgba(248,113,113,0.35);
         --pane: #0a0f1d;
-        --shadow-card: 0 1px 2px rgba(0,0,0,.40);
-        --shadow-pane: 0 4px 16px rgba(0,0,0,.35);
+        --shadow-card: 0 1px 3px rgba(0,0,0,.55), 0 8px 24px rgba(0,0,0,.40);
+        --shadow-pane: 0 8px 28px rgba(0,0,0,.48);
+        --scroll-thumb: rgba(255,255,255,.35);
+        --scroll-thumb-hover: rgba(255,255,255,.55);
+        --scroll-track: rgba(255,255,255,.10);
       }
     }
 
@@ -77,16 +83,36 @@
     }
     
     /* 滚动条美化（可选） */
+    /* WebKit 滚动条 */
     #news .news::-webkit-scrollbar,
-    #publications #pubs::-webkit-scrollbar{ height: 8px; width: 8px; }
-    #news .news::-webkit-scrollbar-thumb,
-    #publications #pubs::-webkit-scrollbar-thumb{
-      background: var(--border);
+    #publications #pubs::-webkit-scrollbar{
+      height: 10px; width: 10px;
+    }
+    #news .news::-webkit-scrollbar-track,
+    #publications #pubs::-webkit-scrollbar-track{
+      background: var(--scroll-track);
       border-radius: 8px;
     }
-    #news .news{ scrollbar-color: var(--border) transparent; }
-    #publications #pubs{ scrollbar-color: var(--border) transparent; border-color: color-mix(in oklab, var(--border) 70%, black); }
+    #news .news::-webkit-scrollbar-thumb,
+    #publications #pubs::-webkit-scrollbar-thumb{
+      background: var(--scroll-thumb);
+      border-radius: 8px;
+      border: 2px solid transparent;       /* 让拇指有内边界，更清晰 */
+      background-clip: padding-box;
+    }
+    #news .news::-webkit-scrollbar-thumb:hover,
+    #publications #pubs::-webkit-scrollbar-thumb:hover{
+      background: var(--scroll-thumb-hover);
+    }
     
+    /* Firefox：颜色 + 更细滚动条；并微优化滚动时阴影锯齿 */
+    #news .news,
+    #publications #pubs{
+      scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+      scrollbar-width: thin;
+      will-change: transform;
+    }
+
     /* 列表内间距稍紧凑一些以适应面板 */
     #publications #pubs .pub{ margin: 10px 0; }
 
