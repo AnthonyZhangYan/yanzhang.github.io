@@ -23,6 +23,9 @@
       --pdf-border: #e9d5ff;
       --doi-border: #bbf7d0;
       --arxiv-border: #fecaca;
+
+      --news-pane-h: 180px;   /* News 面板高度 */
+      --pubs-pane-h: 360px;   /* Publications 面板高度 */
     }
     @media (prefers-color-scheme: dark){
       :root{
@@ -40,6 +43,46 @@
       }
     }
 
+    /* News 滚动面板 */
+    #news .news{
+      max-height: var(--news-pane-h);
+      overflow: auto;
+      padding: 12px 14px 12px 22px; /* 右边距14，左边距22，自己微调 */
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    
+    /* Publications 滚动面板 */
+    #publications #pubs{
+      max-height: var(--pubs-pane-h);
+      overflow: auto;
+      padding: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    /* 触控滚动更顺滑 */
+    #news .news,
+    #publications #pubs{
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* 滚动条美化（可选） */
+    #news .news::-webkit-scrollbar,
+    #publications #pubs::-webkit-scrollbar{ height: 8px; width: 8px; }
+    #news .news::-webkit-scrollbar-thumb,
+    #publications #pubs::-webkit-scrollbar-thumb{
+      background: var(--border);
+      border-radius: 8px;
+    }
+    #news .news{ scrollbar-color: var(--border) transparent; }
+    #publications #pubs{ scrollbar-color: var(--border) transparent; }
+    
+    /* 列表内间距稍紧凑一些以适应面板 */
+    #publications #pubs .pub{ margin: 10px 0; }
+
     html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Apple Color Emoji','Segoe UI Emoji';}
     .container{max-width:860px;margin:0 auto;padding:28px 20px 120px;}
     header{display:flex;align-items:center;gap:22px;margin-bottom:18px;}
@@ -56,7 +99,13 @@
     .pub .title{font-weight:600}
     .pub .venue{font-size:13px;color:var(--muted)}
     .pub .authors{font-size:14px;color:var(--muted)}
-    .pub .links a{margin-right:10px;text-decoration:none}
+    .pub .links a{text-decoration:none}
+    .pub .links{
+      margin-top: 0.9em;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;               /* 标签之间的水平/换行间距 */
+    }
     .chips{display:flex;gap:8px;flex-wrap:wrap}
     .chip{background:var(--badge);color:var(--accent);border-radius:999px;padding:4px 10px;font-size:12px;border:1px solid var(--border)}
     footer{margin-top:56px;color:var(--muted);font-size:13px}
