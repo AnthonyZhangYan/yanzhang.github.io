@@ -43,6 +43,8 @@
 
     /* NEW: highlight self in author list */
     .me{ text-decoration: underline; text-underline-offset: 3px; font-weight:700; }
+    /* For more authors */
+    .more-authors { text-decoration: underline dotted; cursor: help; }
   </style>
 </head>
 <body>
@@ -122,8 +124,6 @@
       interests: ['Machine Learning','AI for Science','Bayesian Optimization','Large Language Models']
     };
 
-    // Publications：在这里按从新到旧列出即可
-    // 每条：title, venue, authors, links: [{name,url}]
     const PUBLICATIONS = [
   {
     title: 'Beyond Heuristics: Globally Optimal Configuration of Implicit Neural Representations',   // 改成论文标题
@@ -135,7 +135,9 @@
   {
     title: 'Giant and Reversible Barocaloric Effect in Trinuclear Spin-Crossover Complex Fe₃(bntrz)₆(tcnset)₆',
     venue: 'Advanced Materials 33(10): 2008076',
-    authors: 'M. Romanini, Y.X. Wang, K. Gürpinar, G. Ornelas, P. Lloveras, Y. Zhang, ...',
+    authors: 'M. Romanini, Y.X. Wang, K. Gürpinar, G. Ornelas, P. Lloveras, Y. Zhang,',
+    moreAuthors: `Wenkai Zheng, Maria Barrio, Araceli Aznar, Adrià Gràcia-Condal, Baris Emre, Orhan Atakol,
+                  Catalin Popescu, Hu Zhang, Yi Long, Luis Balicas, Josep Lluís Tamarit, Antoni Planes, Michael Shatruk, Lluís Mañosa`,
     links: [{ name: 'DOI', url: 'https://doi.org/10.1002/adma.202008076' }],
     year: '2021'
   },
@@ -197,7 +199,11 @@
       el.innerHTML = `
         <div class="title">${p.title}</div>
         <div class="venue">${[p.year, p.venue].filter(Boolean).join(' — ')}</div>
-        <div class="authors">${highlightAuthors(p.authors)}</div>
+        <div class="authors">${
+          p.moreAuthors
+            ? `${highlightAuthors(p.authors)}, <span class="more-authors" title="${[p.authors, p.moreAuthors].join(', ')}">…</span>`
+            : highlightAuthors(p.authors)
+        }</div>
         <div class="links">${(p.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.name}</a>`).join('')}</div>
       `;
       mount.appendChild(el);
