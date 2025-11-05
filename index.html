@@ -29,9 +29,10 @@
       --pane: #e6ebf3;
       --shadow-card: 0 1px 3px rgba(15,23,42,.12), 0 6px 12px rgba(15,23,42,.10);
       --shadow-pane: 0 6px 20px rgba(15,23,42,.14);
-      --scroll-thumb: rgba(15,23,42,.45);   /* 深一点 */
+      --scroll-thumb: rgba(15,23,42,.45);
       --scroll-thumb-hover: rgba(15,23,42,.65);
-      --scroll-track: rgba(15,23,42,.08);   /* 轨道浅灰 */
+      --scroll-track: rgba(15,23,42,.08);
+      --radius-pane: 12px;    /* 圆角统一变量 */
     }
     @media (prefers-color-scheme: dark){
       :root{
@@ -52,6 +53,7 @@
         --scroll-thumb: rgba(255,255,255,.35);
         --scroll-thumb-hover: rgba(255,255,255,.55);
         --scroll-track: rgba(255,255,255,.10);
+        --radius-pane: 12px;
       }
     }
 
@@ -59,31 +61,36 @@
     #news .news{
       max-height: var(--news-pane-h);
       overflow: auto;
-      padding: 12px 14px 12px 22px; /* 右边距14，左边距22，自己微调 */
+      overflow-x: hidden;                 /* 防水平细线 */
+      padding: 12px 14px 12px 22px;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius-pane);
     }
     
     /* Publications 滚动面板 */
     #publications #pubs{
       max-height: var(--pubs-pane-h);
       overflow: auto;
+      overflow-x: hidden;                 /* 防水平细线 */
       padding: 12px;
       background: var(--pane);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius-pane);
     }
 
-    /* 触控滚动更顺滑 */
+    /* 触控滚动更顺滑 + 阴影 + 裁剪滚动条到圆角内 */
     #news .news,
     #publications #pubs{
       -webkit-overflow-scrolling: touch;
       box-shadow: var(--shadow-pane);
+      clip-path: inset(0 round var(--radius-pane));
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      scrollbar-gutter: stable;           /* 滚动条出现不跳动 */
     }
     
-    /* 滚动条美化（可选） */
-    /* WebKit 滚动条 */
+    /* 滚动条美化 */
+    /* WebKit */
     #news .news::-webkit-scrollbar,
     #publications #pubs::-webkit-scrollbar{
       height: 10px; width: 10px;
@@ -97,7 +104,7 @@
     #publications #pubs::-webkit-scrollbar-thumb{
       background: var(--scroll-thumb);
       border-radius: 8px;
-      border: 2px solid transparent;       /* 让拇指有内边界，更清晰 */
+      border: 2px solid transparent;      /* 内边界更清晰 */
       background-clip: padding-box;
     }
     #news .news::-webkit-scrollbar-thumb:hover,
@@ -105,7 +112,7 @@
       background: var(--scroll-thumb-hover);
     }
     
-    /* Firefox：颜色 + 更细滚动条；并微优化滚动时阴影锯齿 */
+    /* Firefox：颜色 + 更细滚动条；滚动时抗锯齿 */
     #news .news,
     #publications #pubs{
       scrollbar-color: var(--scroll-thumb) var(--scroll-track);
@@ -137,7 +144,7 @@
       margin-top: 0.9em;
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;               /* 标签之间的水平/换行间距 */
+      gap: 8px;
     }
     .chips{display:flex;gap:8px;flex-wrap:wrap}
     .chip{background:var(--badge);color:var(--accent);border-radius:999px;padding:4px 10px;font-size:12px;border:1px solid var(--border)}
