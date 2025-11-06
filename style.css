@@ -51,16 +51,18 @@ footer{margin-top:56px;color:var(--muted);font-size:13px}
   list-style: none;          /* 去掉原来的小圆点 */
   padding-left: 0;
 }
+/* 左列固定宽度；右列自适应 */
 #news-list li{
   display: grid;
-  grid-template-columns: 10ch minmax(0,1fr);   /* 允许右列正常占满剩余空间 */
+  grid-template-columns: calc(10ch + 20px) minmax(0,1fr); /* 10ch + 左右各10px内边距 */
   align-items: center;
   gap: 12px;
-  margin: 6px 0;
 }
+
+/* 日期胶囊占满左列，使用等宽数字 */
 #news-list li .pill{
-  display: inline-block;
-  min-width: 8ch;                   /* 胶囊自身最小宽度（可调） */
+  width: 100%;
+  box-sizing: border-box;
   text-align: center;
   padding: 2px 10px;
   border-radius: 9999px;
@@ -68,7 +70,13 @@ footer{margin-top:56px;color:var(--muted);font-size:13px}
   border: 1px solid var(--border);
   color: var(--fg);
   font-weight: 600;
+
+  /* 关键：等宽数字（Inter 支持） */
+  font-variant-numeric: tabular-nums;
+  /* 兼容某些浏览器： */
+  font-feature-settings: "tnum" 1;
 }
+
 #news-list li .msg{
   color: var(--muted);              /* 与站内副文本色一致 */
   overflow-wrap: anywhere;   /* 防止超长单词/链接撑破 */
