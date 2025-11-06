@@ -77,9 +77,7 @@ body {
 
   /* 先设底色，再用背景图层叠加渐变（不覆盖底色） */
   background-color: var(--bg);
-  background-image: radial-gradient(1200px 600px at 30% 140px,
-                                    rgba(255, 255, 255, 0.06),
-                                    transparent 60%);
+  background-image: radial-gradient(1100px 520px at 28% 150px, rgba(255,255,255,0.10), transparent 50%);
   background-repeat: no-repeat;
   background-attachment: fixed; /* 滚动时更稳，按需可去掉 */
 }
@@ -88,9 +86,7 @@ body {
 @media (prefers-color-scheme: dark) {
   html,
   body {
-    background-image: radial-gradient(1200px 600px at 30% 140px,
-                                      rgba(255, 255, 255, 0.10),
-                                      transparent 60%);
+    background-image: radial-gradient(1100px 520px at 28% 150px, rgba(255,255,255,0.16), transparent 50%);
   }
 }
 
