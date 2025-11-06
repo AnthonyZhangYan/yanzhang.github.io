@@ -118,7 +118,27 @@ h1 { font-size: 28px; margin: 0 0 6px 0; letter-spacing: .2px; }
 
 .subtitle { color: var(--muted); font-size: 15px; }
 
-.contact a { color: var(--link); text-decoration: none; margin-right: 14px; }
+/* 联系方式链接：保持当前默认色，其他状态与 News 链接一致 */
+.contact a{
+  color: var(--link);        /* 保持你现在的浅蓝 */
+  text-decoration: none;     /* 无下划线 */
+}
+.contact a:visited{
+  color: var(--link);        /* 访问后不变紫 */
+  text-decoration: none;
+}
+.contact a:hover,
+.contact a:active{
+  /* 轻微提亮感（可调 85%→80% 更明显） */
+  color: color-mix(in srgb, var(--link) 85%, var(--fg) 15%);
+  text-decoration: none;
+}
+.contact a:focus-visible{
+  /* 可访问性高亮（若不需要可删） */
+  outline: 2px solid color-mix(in srgb, var(--link) 60%, transparent);
+  outline-offset: 2px;
+  text-decoration: none;
+}
 
 .contact a.icon { display: inline-flex; align-items: center; gap: 10px; line-height: 1; padding: 2px 0; }
 .contact a.icon svg { width: 18px; height: 18px; flex: 0 0 18px; stroke: currentColor; }
