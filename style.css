@@ -468,3 +468,23 @@ footer {
     color: color-mix(in srgb, var(--fg) 92%, transparent); /* 略提亮，增强可读性 */
   }
 }
+
+/* ===== Education layout ===== */
+.ed-grid { list-style: none; padding-left: 0; margin: 0; }
+.ed-grid li {
+  display: grid;
+  grid-template-columns: 1fr auto;   /* 左侧信息自适应，右侧日期紧贴右边 */
+  gap: 10px;
+  align-items: baseline;
+  margin: 8px 0 12px;
+  line-height: 1.5;
+}
+.ed-grid .school { color: var(--muted); }     /* 学校/地点弱化为浅灰 */
+.ed-grid .when  { color: var(--muted); white-space: nowrap; } /* 日期浅灰并不换行 */
+.ed-grid b { color: var(--accent); }
+
+/* 窄屏下改为上下两行，更易读 */
+@media (max-width: 560px) {
+  .ed-grid li { grid-template-columns: 1fr; }
+  .ed-grid .when { justify-self: start; margin-top: 2px; }
+}
