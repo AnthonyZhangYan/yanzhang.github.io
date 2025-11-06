@@ -364,7 +364,7 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   .seal{ width:32px; height:32px; }
 }
 
-/* ==== Visitors Globe (bare & responsive) ==== */
+/* ==== Visitors Globe (bare & responsive, target injected node) ==== */
 #visitors h2{
   font-size: 20px;
   margin: 24px 0 12px;
@@ -380,17 +380,16 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   justify-content: center;
 }
 
-/* 尺寸控制：在不同屏宽下自动 240–400px（可按需改上限/下限） */
-#clustrmaps-globe{
-  width: 100%;
-  max-width: clamp(30px, 30vw, 50px);
+/* 关键：widget 会把真正的容器插在 #clstr_globe 脚本之后 */
+#clstr_globe + div{
+  width: 100% !important;
+  max-width: clamp(240px, 30vw, 400px) !important;  /* 改这里就能整体变大/变小 */
   aspect-ratio: 1 / 1;
   margin: 0 auto;
 }
 
-/* 防止脚本把内部画布写成固定像素导致过大 */
-#clustrmaps-globe canvas,
-#clustrmaps-globe > div{
+/* 内部 canvas 也强制跟随容器宽度 */
+#clstr_globe + div canvas{
   width: 100% !important;
   height: auto !important;
   max-width: 100% !important;
