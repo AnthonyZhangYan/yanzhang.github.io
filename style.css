@@ -469,22 +469,44 @@ footer {
   }
 }
 
-/* ===== Education layout ===== */
-.ed-grid { list-style: none; padding-left: 0; margin: 0; }
-.ed-grid li {
-  display: grid;
-  grid-template-columns: 1fr auto;   /* 左侧信息自适应，右侧日期紧贴右边 */
-  gap: 10px;
-  align-items: baseline;
-  margin: 8px 0 12px;
-  line-height: 1.5;
+/* ===== Education: left accent bar + degree chips ===== */
+.edu-grid{ list-style:none; padding-left:0; margin:0; }
+.edu-grid li{
+  position:relative;
+  padding:10px 0 12px 16px;   /* 为左侧强调条留出空间 */
+  margin:6px 0 10px;
+  display:grid;
+  grid-template-columns:1fr auto; /* 左信息 + 右日期 */
+  gap:10px;
+  align-items:baseline;
+  line-height:1.5;
 }
-.ed-grid .school { color: var(--muted); }     /* 学校/地点弱化为浅灰 */
-.ed-grid .when  { color: var(--muted); white-space: nowrap; } /* 日期浅灰并不换行 */
-.ed-grid b { color: var(--accent); }
+/* 左侧强调条（不靠外边框也有层次） */
+.edu-grid li::before{
+  content:"";
+  position:absolute; left:0; top:8px; bottom:8px;
+  width:4px; border-radius:4px;
+  background:linear-gradient(180deg, var(--link), transparent 80%);
+  opacity:.55;
+}
+/* 学位徽章 */
+.degree{
+  display:inline-block; margin-left:8px; padding:2px 8px;
+  font-size:12px; font-weight:600; vertical-align:middle;
+  color:var(--link); background:var(--label-bg);
+  border:1px solid var(--border); border-radius:9999px;
+  transition:all .2s ease;
+}
+.degree:hover{ color:var(--pdf-hover); border-color:var(--pdf-border); }
 
-/* 窄屏下改为上下两行，更易读 */
-@media (max-width: 560px) {
-  .ed-grid li { grid-template-columns: 1fr; }
-  .ed-grid .when { justify-self: start; margin-top: 2px; }
+/* 文字层次与可读性 */
+.ed-grid b{ color:var(--accent); }
+.ed-grid .school{ color:var(--muted); }
+.ed-grid .when{ color:var(--muted); white-space:nowrap; }
+
+/* 窄屏：上下堆叠，日期跟在下方 */
+@media (max-width:560px){
+  .edu-grid li{ grid-template-columns:1fr; }
+  .ed-grid .when{ justify-self:start; margin-top:2px; }
 }
+
