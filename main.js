@@ -66,9 +66,7 @@ function renderPubs(list){
     const links=(p.links||[]).map(l=>{
       const safe=(l.url||'').replace(/\s/g,'%20');
       const cls=linkClass(l.name,l.url);
-      const isPdf = /pdf/i.test(l.name) || /\.pdf(\?.*)?$/i.test(l.url||'');
-      const extra = isPdf ? 'type="application/pdf"' : '';
-      return `<a class="${cls}" href="${safe}" target="_blank" rel="noopener noreferrer" ${extra}>${l.name}</a>`;
+      return `<a class="${cls}" href="${safe}" target="_blank" rel="noopener noreferrer">${l.name}</a>`;
     }).join('');
     const authors = p.moreAuthors
       ? `<details><summary>${highlightAuthors(p.authors)} <span aria-label="more">…</span></summary><div>${highlightAuthors(p.moreAuthors)}</div></details>`
