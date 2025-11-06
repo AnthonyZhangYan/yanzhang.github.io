@@ -53,7 +53,7 @@ footer{margin-top:56px;color:var(--muted);font-size:13px}
 }
 #news-list li{
   display: grid;
-  grid-template-columns: 10ch 1fr;  /* 左列固定宽度，适配 YYYY-MM */
+  grid-template-columns: 10ch minmax(0,1fr);   /* 允许右列正常占满剩余空间 */
   align-items: center;
   gap: 12px;
   margin: 6px 0;
@@ -71,6 +71,7 @@ footer{margin-top:56px;color:var(--muted);font-size:13px}
 }
 #news-list li .msg{
   color: var(--muted);              /* 与站内副文本色一致 */
+  overflow-wrap: anywhere;   /* 防止超长单词/链接撑破 */
 }
 
 /* 窄屏下自动换行为上下两行 */
