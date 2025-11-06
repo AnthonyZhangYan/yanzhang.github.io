@@ -27,7 +27,7 @@ function linkClass(name,url){
 byId('name').textContent=PROFILE.name;
 byId('title').textContent=PROFILE.title;
 byId('affil').textContent=PROFILE.affil;
-const email=byId('email'); email.textContent=PROFILE.email; email.href='mailto:'+PROFILE.email;
+const email = byId('email'); email.href = 'mailto:' + PROFILE.email; email.querySelector('.label').textContent = PROFILE.email;
 byId('scholar').href=PROFILE.scholar; byId('github').href=PROFILE.github; byId('linkedin').href=PROFILE.linkedin;
 document.querySelector('.chips').innerHTML=PROFILE.interests.map(t=>`<span class="chip">${t}</span>`).join('');
 document.getElementById('year').textContent=new Date().getFullYear();
