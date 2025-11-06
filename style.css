@@ -230,7 +230,7 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   text-decoration: none;
 }
 #news .msg a:visited{
-  color: color-mix(in srgb, var(--link) 60%, var(--fg) 30%); /* 仅 5% 差异 */
+  color: color-mix(in srgb, var(--link) 40%, var(--fg) 60%); /* 仅 5% 差异 */
   text-decoration: none;
 }
 #news .msg a:hover,
