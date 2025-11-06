@@ -339,7 +339,7 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   clip-path: circle(50%);
   background-position:center;
   background-repeat:no-repeat;
-  background-size:110%;          /* 统一减少裁剪；越小露得越多 */
+  background-size:108%;          /* 统一减少裁剪；越小露得越多 */
   filter: grayscale(8%); opacity:.95;
   transition: transform .2s ease, filter .2s ease, opacity .2s ease;
 }
