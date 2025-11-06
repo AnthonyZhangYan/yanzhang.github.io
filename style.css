@@ -123,7 +123,7 @@ h1 { font-size: 28px; margin: 0 0 6px 0; letter-spacing: .2px; }
 .contact a{
   color: var(--link);
   text-decoration: none;
-  margin-right: 20px;            /* 每个链接之间更疏 */
+  margin-right: 24px;            /* 每个链接之间更疏 */
 }
 .contact a:last-child{ margin-right: 0; }
 
@@ -146,7 +146,7 @@ h1 { font-size: 28px; margin: 0 0 6px 0; letter-spacing: .2px; }
 .contact a.icon{
   display: inline-flex;
   align-items: center;
-  gap: 6px;                      /* 原 10px -> 6px */
+  gap: 3px;                      /* 原 10px -> 3px */
   line-height: 1;
   padding: 2px 0;
 }
