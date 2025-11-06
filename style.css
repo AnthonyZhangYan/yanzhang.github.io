@@ -66,24 +66,41 @@
   }
 }
 
-/* 全局背景：底色 + 极淡径向光晕 */
-/* 亮色模式：顶部整条柔光 + 大范围顶中心光晕 */
-html, body {
+/* 全局背景：底色 + 顶部均匀柔光（亮/暗分别设置强度） */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--fg);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+
+  /* 先放底色，再叠加背景图层 */
+  background-color: var(--bg);
   background-image:
-    /* 顶部线性高光：从上向下渐隐，均匀照亮整条上沿 */
-    linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.00) 38%),
-    /* 顶部居中大光晕：柔化过渡，避免生硬带感 */
-    radial-gradient(1200px 420px at 50% -60px, rgba(255,255,255,0.08), transparent 70%);
+    /* 顶部线性高光：从上往下均匀衰减 */
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.00) 38%),
+    /* 顶部居中大光晕：柔化过渡 */
+    radial-gradient(1200px 420px at 50% -60px,
+      rgba(255, 255, 255, 0.08),
+      transparent 70%);
   background-repeat: no-repeat;
-  background-attachment: fixed; /* 可要可不要；要的话滚动时更稳 */
+  background-attachment: fixed; /* 需要的话保留，不需要可删 */
 }
 
-/* 暗色模式：整体提亮系数，比例保持一致 */
 @media (prefers-color-scheme: dark) {
-  html, body {
+  html,
+  body {
+    /* 暗色下稍微提亮一点（只改图层，不改底色） */
     background-image:
-      linear-gradient(to bottom, rgba(255,255,255,0.14), rgba(255,255,255,0.00) 40%),
-      radial-gradient(1200px 420px at 50% -60px, rgba(255,255,255,0.16), transparent 70%);
+      linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.14),
+        rgba(255, 255, 255, 0.00) 40%),
+      radial-gradient(1200px 420px at 50% -60px,
+        rgba(255, 255, 255, 0.16),
+        transparent 70%);
   }
 }
 
