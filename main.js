@@ -96,3 +96,17 @@ selSort.addEventListener('change', ()=>{
 });
 
 loadPubs();
+// ---- News: split "YYYY-MM: message" into [date pill][message] ----
+(function formatNews(){
+  const ul = document.getElementById('news-list');
+  if (!ul) return;
+  ul.querySelectorAll('li').forEach(li=>{
+    const raw = li.textContent.trim();
+    const parts = raw.split(/[:：]\s*/); // 支持 : 和 ：
+    if (parts.length >= 2) {
+      const date = parts[0];
+      const msg  = parts.slice(1).join(': ');
+      li.innerHTML = `<span class="pill">${date}</span><span class="msg">${msg}</span>`;
+    }
+  });
+})();
