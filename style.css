@@ -510,3 +510,25 @@ footer {
   .ed-grid .when{ justify-self:start; margin-top:2px; }
 }
 
+/* 右列整体右对齐 */
+.ed-grid .when{
+  justify-self: end;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+/* 月份固定宽度，形成“月”小列；用等宽字体避免 May/Jun/Dec 宽度差异 */
+.when .mon{
+  display: inline-block;
+  width: 3.2ch;           /* 3 个字符的列宽 */
+  text-align: right;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* 年份使用等宽数字，形成“年”小列 */
+.when .yr{
+  margin-left: 6px;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
