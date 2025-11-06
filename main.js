@@ -106,7 +106,9 @@ loadPubs();
     if (parts.length >= 2) {
       const date = parts[0];
       let msg  = parts.slice(1).join(': ');
-      msg = msg.replace(/Dr\.?\s+Shibo\s+Li/gi, '<b>Dr. Shibo Li</b>');
+      msg = msg
+        .replace(/PML4SC/gi, '<a href="https://pml4sc.github.io/" target="_blank" rel="noopener"><b>pml4sc</b></a>')
+        .replace(/Dr\.?\s+Shibo\s+Li/gi, '<a href="https://imshibo.com/" target="_blank" rel="noopener"><b>Dr. Shibo Li</b></a>');
       li.innerHTML = `<span class="pill">${date}</span><span class="msg">${msg}</span>`;
     }
   });
