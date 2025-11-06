@@ -346,8 +346,8 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
 .seal:hover{ transform: translateY(-1px); filter:none; opacity:1; }
 
 /* 指向资源 + 分别微调裁剪比例 */
-.seal.fsu{ background-image:url('assets/fsu.png'); background-size:100%; }
-.seal.nku{ background-image:url('assets/nku.png'); background-size:100%; }
+.seal.nku{ background-image:url('assets/fsu.png'); background-size:100%; }
+.seal.fsu{ background-image:url('assets/nku.png'); background-size:170%; background-position: 50% 50%; }
 
 /* 窄屏略缩小 */
 @media (max-width:480px){
