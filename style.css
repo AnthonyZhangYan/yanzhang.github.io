@@ -223,22 +223,25 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
 
 #news-list li .msg { color: var(--muted); overflow-wrap: anywhere; }
 
-/* News 文本中的链接：柔和色、无下划线、访问后不变紫 */
+/* News 文本中的链接：柔和色、轻微 visited 差异、可见性高亮 */
 #news .msg a{
   color: color-mix(in srgb, var(--link) 70%, var(--fg) 30%);
   font-weight: 700;
   text-decoration: none;
 }
 #news .msg a:visited{
-  color: color-mix(in srgb, var(--link) 55%, var(--fg) 45%);
+  color: color-mix(in srgb, var(--link) 60%, var(--fg) 30%); /* 仅 5% 差异 */
   text-decoration: none;
 }
 #news .msg a:hover,
-#news .msg a:focus,
 #news .msg a:active{
   color: var(--link);
   text-decoration: none;
-  outline: none;
+}
+#news .msg a:focus-visible{
+  outline: 2px solid color-mix(in srgb, var(--link) 60%, transparent);
+  outline-offset: 2px;
+  text-decoration: none;
 }
 
 /* 窄屏：上下两行 */
