@@ -67,35 +67,46 @@
 }
 
 /* 全局背景：底色 + 顶部均匀柔光（亮/暗分别设置强度） */
-/* 亮色模式：顶部淡阴影 + 顶部居中暗色晕影，形成聚焦 */
+/* 共用：只放基础样式，别放渐变 */
 html,
 body {
+  margin: 0;
+  padding: 0;
+  color: var(--fg);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    'Apple Color Emoji', 'Segoe UI Emoji';
   background-color: var(--bg);
-  background-image:
-    /* 顶部从深到浅，拉出上方聚焦 */
-    linear-gradient(
-      to bottom,
-      rgba(15, 23, 42, 0.08),   /* 深色(与 --fg 同色系) */
-      rgba(15, 23, 42, 0.00) 60%
-    ),
-    /* 顶部居中大晕影，柔化过渡 */
-    radial-gradient(
-      1200px 550px at 50% 0px,
-      rgba(15, 23, 42, 0.10),
-      transparent 70%
-    );
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* 可留可去 */
 }
 
+/* 亮色：顶部淡阴影 + 顶部居中暗色晕影（只作用于亮色模式） */
+@media (prefers-color-scheme: light) {
+  html,
+  body {
+    background-image:
+      linear-gradient(to bottom,
+        rgba(15, 23, 42, 0.06),   /* 顶部阴影 */
+        rgba(15, 23, 42, 0.00) 55%),
+      radial-gradient(1200px 520px at 50% 0px,
+        rgba(15, 23, 42, 0.08),   /* 顶部居中晕影 */
+        transparent 70%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+}
 
+/* 暗色：保持你之前的柔光，不受亮色影响 */
 @media (prefers-color-scheme: dark) {
   html,
   body {
-    /* 暗色下稍微提亮一点（只改图层，不改底色） */
     background-image:
-      linear-gradient(to bottom, rgba(255,255,255,0.14), rgba(255,255,255,0.00) 52%),
-      radial-gradient(1200px 520px at 50% 0px, rgba(255,255,255,0.16), transparent 70%);
+      linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.14),
+        rgba(255, 255, 255, 0.00) 52%),
+      radial-gradient(1200px 520px at 50% 0px,
+        rgba(255, 255, 255, 0.16),
+        transparent 70%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 }
 
