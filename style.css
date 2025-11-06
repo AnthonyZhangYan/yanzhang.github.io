@@ -383,7 +383,7 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
 /* 尺寸控制：在不同屏宽下自动 240–400px（可按需改上限/下限） */
 #clustrmaps-globe{
   width: 100%;
-  max-width: clamp(240px, 30vw, 400px);
+  max-width: clamp(120px, 30vw, 200px);
   aspect-ratio: 1 / 1;
   margin: 0 auto;
 }
