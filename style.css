@@ -331,7 +331,7 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
 /* 名字 + 校徽在同一行，基线对齐 */
 /* 名字 + 校徽在同一行，基线对齐 */
 .name-row{ display:flex; align-items:flex-end; gap:12px; flex-wrap:wrap; }
-.name-logos{ display:flex; gap:8px; padding-bottom:1px; } /* 0–3px 可微调基线 */
+.name-logos{ display:flex; gap:8px; padding-bottom:3px; } /* 0–3px 可微调基线 */
 
 /* 校徽：圆形裁切、适度放大以吃掉白边 */
 .seal{
