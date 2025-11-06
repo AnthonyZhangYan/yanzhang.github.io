@@ -1,6 +1,6 @@
 // Basic profile (kept inline)
 const PROFILE={
-  name:'Yan Zhang',
+  name:'Yan Zhang (张岩)',
   title:'Ph.D. Student @ Florida State University',
   affil:'Department of Computer Science',
   email:'yz18b@fsu.edu',
@@ -105,7 +105,8 @@ loadPubs();
     const parts = raw.split(/[:：]\s*/); // 支持 : 和 ：
     if (parts.length >= 2) {
       const date = parts[0];
-      const msg  = parts.slice(1).join(': ');
+      let msg  = parts.slice(1).join(': ');
+      msg = msg.replace(/Dr\.?\s+Shibo\s+Li/gi, '<b>Dr. Shibo Li</b>');
       li.innerHTML = `<span class="pill">${date}</span><span class="msg">${msg}</span>`;
     }
   });
