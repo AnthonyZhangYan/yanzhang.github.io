@@ -1,66 +1,387 @@
-:root{--bg:#fff;--fg:#0f172a;--muted:#475569;--link:#2563eb;--card:#f8fafc;--border:#e2e8f0;--accent:#111827;--badge:#eef2ff;--pdf:#7c3aed;--pdf-hover:#6d28d9;--doi:#059669;--doi-hover:#047857;--arxiv:#dc2626;--arxiv-hover:#b91c1c;--label-bg:rgba(15,23,42,.04);--pdf-border:#e9d5ff;--doi-border:#bbf7d0;--arxiv-border:#fecaca;--pane:#e6ebf3;--shadow-card:0 1px 3px rgba(15,23,42,.12),0 6px 12px rgba(15,23,42,.10);--shadow-pane:0 6px 20px rgba(15,23,42,.14);--scroll-thumb:rgba(15,23,42,.45);--scroll-thumb-hover:rgba(15,23,42,.65);--scroll-track:rgba(15,23,42,.08);--radius-pane:12px;--news-pane-h:180px;--pubs-pane-h:360px}
-@media (prefers-color-scheme:dark){:root{--bg:#0b0f1a;--fg:#e5e7eb;--muted:#9ca3af;--link:#93c5fd;--card:#0f1626;--border:#1f2937;--accent:#f9fafb;--badge:#111827;--pdf:#a78bfa;--pdf-hover:#c4b5fd;--doi:#34d399;--doi-hover:#6ee7b7;--arxiv:#f87171;--arxiv-hover:#fca5a5;--label-bg:rgba(255,255,255,.06);--pdf-border:rgba(167,139,250,.35);--doi-border:rgba(52,211,153,.35);--arxiv-border:rgba(248,113,113,.35);--pane:#0a0f1d;--shadow-card:0 1px 3px rgba(0,0,0,.55),0 8px 24px rgba(0,0,0,.40);--shadow-pane:0 8px 28px rgba(0,0,0,.48);--scroll-thumb:rgba(255,255,255,.35);--scroll-thumb-hover:rgba(255,255,255,.55);--scroll-track:rgba(255,255,255,.10)}}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Apple Color Emoji','Segoe UI Emoji'}
-.container{max-width:860px;margin:0 auto;padding:28px 20px 120px}
-header{display:flex;align-items:center;gap:22px;margin-bottom:18px}
-header img{width:84px;height:84px;border-radius:16px;object-fit:cover;border:1px solid var(--border);background:#fff}
-h1{font-size:28px;margin:0 0 6px 0;letter-spacing:.2px}
-.subtitle{color:var(--muted);font-size:15px}
-.contact a{color:var(--link);text-decoration:none;margin-right:14px}
-/* 图标版联系链接 */
-.contact a.icon{display: inline-flex;align-items: center;gap: 10px;line-height: 1;padding: 2px 0;}
-.contact a.icon svg{width: 18px;height: 18px;flex: 0 0 18px;stroke: currentColor;}
-.nav{display:flex;gap:14px;margin:18px 0 10px 0;flex-wrap:wrap}
-.nav a{padding:8px 12px;border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--fg);font-size:14px;background:var(--card)}
-section{margin-top:28px}
-section h2{font-size:20px;margin:0 0 14px 0}
-.controls{display:flex;gap:10px;align-items:center;margin:8px 0 12px 0}
-.controls label{font-size:13px;color:var(--muted)}
-select{padding:6px 8px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--fg)}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{background:var(--badge);color:var(--accent);border-radius:999px;padding:4px 10px;font-size:12px;border:1px solid var(--border)}
-.pub{padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--card);margin:12px 0;box-shadow:var(--shadow-card)}
-.pub .title{font-weight:600}
-.pub .venue{font-size:13px;color:var(--muted)}
-.pub .authors{font-size:14px;color:var(--muted)}
-.links{margin-top:.9em;display:flex;flex-wrap:wrap;gap:8px}
-.links a{color:var(--link);text-decoration:none}
-.links a.pdf-link,.links a.doi-link,.links a.arxiv-link{display:inline-block;padding:1px 8px;border-radius:10px;background:var(--label-bg);border:1px solid transparent;line-height:1.3;font-weight:600}
-.links a.pdf-link{color:var(--pdf);border-color:var(--pdf-border)}
-.links a.doi-link{color:var(--doi);border-color:var(--doi-border)}
-.links a.arxiv-link{color:var(--arxiv);border-color:var(--arxiv-border)}
-.links a.pdf-link:hover{color:var(--pdf-hover);background:rgba(124,58,237,.10);text-decoration:underline}
-.links a.doi-link:hover{color:var(--doi-hover);background:rgba(5,150,105,.10);text-decoration:underline}
-.links a.arxiv-link:hover{color:var(--arxiv-hover);background:rgba(220,38,38,.10);text-decoration:underline}
-.links a:focus{outline:2px solid currentColor;outline-offset:2px;text-decoration:none}
-.scrollbox{overflow:auto;overflow-x:hidden;padding:12px;background:var(--pane);border:1px solid var(--border);border-radius:var(--radius-pane);-webkit-overflow-scrolling:touch;box-shadow:var(--shadow-pane);clip-path:inset(0 round var(--radius-pane));-webkit-mask-image:-webkit-radial-gradient(white, black);scrollbar-gutter:stable;scrollbar-color:var(--scroll-thumb) var(--scroll-track);scrollbar-width:thin}
-.scrollbox::-webkit-scrollbar{height:10px;width:10px}
-.scrollbox::-webkit-scrollbar-track{background:var(--scroll-track);border-radius:8px}
-.scrollbox::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border-radius:8px;border:2px solid transparent;background-clip:padding-box}
-.scrollbox::-webkit-scrollbar-thumb:hover{background:var(--scroll-thumb-hover)}
-#news .scrollbox{max-height:var(--news-pane-h);padding:12px 14px 12px 22px;background:var(--card)}
-#publications .scrollbox{max-height:var(--pubs-pane-h)}
-.me{text-decoration:underline;text-underline-offset:3px;font-weight:700}
-footer{margin-top:56px;color:var(--muted);font-size:13px}
-.hr{height:1px;background:var(--border);margin:18px 0}
-.misc ul{margin:0;padding-left:20px}
-.misc li{margin:6px 0}
-.kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace;background:var(--card);padding:2px 6px;border-radius:6px;border:1px solid var(--border);font-size:12px}
-/* News：日期胶囊 + 文本两列对齐 */
-#news-list{
-  list-style: none;          /* 去掉原来的小圆点 */
+:root {
+  --bg: #fff;
+  --fg: #0f172a;
+  --muted: #475569;
+  --link: #2563eb;
+  --card: #f8fafc;
+  --border: #e2e8f0;
+  --accent: #111827;
+  --badge: #eef2ff;
+
+  --pdf: #7c3aed;
+  --pdf-hover: #6d28d9;
+  --doi: #059669;
+  --doi-hover: #047857;
+  --arxiv: #dc2626;
+  --arxiv-hover: #b91c1c;
+
+  --label-bg: rgba(15, 23, 42, .04);
+  --pdf-border: #e9d5ff;
+  --doi-border: #bbf7d0;
+  --arxiv-border: #fecaca;
+
+  --pane: #e6ebf3;
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, .12), 0 6px 12px rgba(15, 23, 42, .10);
+  --shadow-pane: 0 6px 20px rgba(15, 23, 42, .14);
+
+  --scroll-thumb: rgba(15, 23, 42, .45);
+  --scroll-thumb-hover: rgba(15, 23, 42, .65);
+  --scroll-track: rgba(15, 23, 42, .08);
+
+  --radius-pane: 12px;
+  --news-pane-h: 180px;
+  --pubs-pane-h: 360px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0f1a;
+    --fg: #e5e7eb;
+    --muted: #9ca3af;
+    --link: #93c5fd;
+    --card: #0f1626;
+    --border: #1f2937;
+    --accent: #f9fafb;
+    --badge: #111827;
+
+    --pdf: #a78bfa;
+    --pdf-hover: #c4b5fd;
+    --doi: #34d399;
+    --doi-hover: #6ee7b7;
+    --arxiv: #f87171;
+    --arxiv-hover: #fca5a5;
+
+    --label-bg: rgba(255, 255, 255, .06);
+    --pdf-border: rgba(167, 139, 250, .35);
+    --doi-border: rgba(52, 211, 153, .35);
+    --arxiv-border: rgba(248, 113, 113, .35);
+
+    --pane: #0a0f1d;
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, .55), 0 8px 24px rgba(0, 0, 0, .40);
+    --shadow-pane: 0 8px 28px rgba(0, 0, 0, .48);
+
+    --scroll-thumb: rgba(255, 255, 255, .35);
+    --scroll-thumb-hover: rgba(255, 255, 255, .55);
+    --scroll-track: rgba(255, 255, 255, .10);
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 28px 20px 120px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 18px;
+}
+
+header img {
+  width: 84px;
+  height: 84px;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0 0 6px 0;
+  letter-spacing: .2px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.contact a {
+  color: var(--link);
+  text-decoration: none;
+  margin-right: 14px;
+}
+
+/* Contact links with inline SVG icons */
+.contact a.icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1;
+  padding: 2px 0;
+}
+
+.contact a.icon svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  stroke: currentColor;
+}
+
+.nav {
+  display: flex;
+  gap: 14px;
+  margin: 18px 0 10px 0;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--fg);
+  font-size: 14px;
+  background: var(--card);
+}
+
+section {
+  margin-top: 28px;
+}
+
+section h2 {
+  font-size: 20px;
+  margin: 0 0 14px 0;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 8px 0 12px 0;
+}
+
+.controls label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+select {
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--fg);
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: var(--badge);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+}
+
+.pub {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  margin: 12px 0;
+  box-shadow: var(--shadow-card);
+}
+
+.pub .title {
+  font-weight: 600;
+}
+
+.pub .venue {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.pub .authors {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.links {
+  margin-top: .9em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.links a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.links a.pdf-link,
+.links a.doi-link,
+.links a.arxiv-link {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 10px;
+  background: var(--label-bg);
+  border: 1px solid transparent;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.links a.pdf-link {
+  color: var(--pdf);
+  border-color: var(--pdf-border);
+}
+
+.links a.doi-link {
+  color: var(--doi);
+  border-color: var(--doi-border);
+}
+
+.links a.arxiv-link {
+  color: var(--arxiv);
+  border-color: var(--arxiv-border);
+}
+
+.links a.pdf-link:hover {
+  color: var(--pdf-hover);
+  background: rgba(124, 58, 237, .10);
+  text-decoration: underline;
+}
+
+.links a.doi-link:hover {
+  color: var(--doi-hover);
+  background: rgba(5, 150, 105, .10);
+  text-decoration: underline;
+}
+
+.links a.arxiv-link:hover {
+  color: var(--arxiv-hover);
+  background: rgba(220, 38, 38, .10);
+  text-decoration: underline;
+}
+
+.links a:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  text-decoration: none;
+}
+
+.scrollbox {
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 12px;
+  background: var(--pane);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pane);
+  -webkit-overflow-scrolling: touch;
+  box-shadow: var(--shadow-pane);
+  clip-path: inset(0 round var(--radius-pane));
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  scrollbar-gutter: stable;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+  scrollbar-width: thin;
+}
+
+.scrollbox::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+.scrollbox::-webkit-scrollbar-track {
+  background: var(--scroll-track);
+  border-radius: 8px;
+}
+
+.scrollbox::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.scrollbox::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover);
+}
+
+#news .scrollbox {
+  max-height: var(--news-pane-h);
+  padding: 12px 14px 12px 22px;
+  background: var(--card);
+}
+
+#publications .scrollbox {
+  max-height: var(--pubs-pane-h);
+}
+
+.me {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
+
+footer {
+  margin-top: 56px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.hr {
+  height: 1px;
+  background: var(--border);
+  margin: 18px 0;
+}
+
+.misc ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.misc li {
+  margin: 6px 0;
+}
+
+.kbd {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  background: var(--card);
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+}
+
+/* ========================== */
+/* News: 日期胶囊 + 文本两列对齐 */
+/* ========================== */
+
+#news-list {
+  list-style: none;
   padding-left: 0;
 }
-/* 左列固定宽度；右列自适应 */
-#news-list li{
+
+/* 左列固定；右列自适应 */
+#news-list li {
   display: grid;
-  grid-template-columns: calc(10ch + 20px) minmax(0,1fr); /* 10ch + 左右各10px内边距 */
+  grid-template-columns: calc(10ch + 20px) minmax(0, 1fr); /* 10ch + 左右各 10px padding */
   align-items: center;
   gap: 12px;
+  margin: 6px 0;
 }
 
 /* 日期胶囊占满左列，使用等宽数字 */
-#news-list li .pill{
+#news-list li .pill {
   width: 100%;
   box-sizing: border-box;
   text-align: center;
@@ -70,26 +391,46 @@ footer{margin-top:56px;color:var(--muted);font-size:13px}
   border: 1px solid var(--border);
   color: var(--fg);
   font-weight: 600;
-
-  /* 关键：等宽数字（Inter 支持） */
-  font-variant-numeric: tabular-nums;
-  /* 兼容某些浏览器： */
-  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums; /* 等宽数字 */
+  font-feature-settings: "tnum" 1;    /* 兼容性 */
 }
 
-#news-list li .msg{
-  color: var(--muted);              /* 与站内副文本色一致 */
-  overflow-wrap: anywhere;   /* 防止超长单词/链接撑破 */
+/* 右侧消息文本 */
+#news-list li .msg {
+  color: var(--muted);
+  overflow-wrap: anywhere;           /* 防长词溢出 */
 }
 
-/* 窄屏下自动换行为上下两行 */
-@media (max-width: 480px){
-  #news-list li{
+/* 窄屏：上下两行 */
+@media (max-width: 480px) {
+  #news-list li {
     grid-template-columns: 1fr;
     align-items: start;
   }
-  #news-list li .pill{
+  #news-list li .pill {
     justify-self: start;
     margin-bottom: 4px;
+  }
+}
+
+/* ============================== */
+/* Dark mode: News 区域对比增强   */
+/* ============================== */
+
+@media (prefers-color-scheme: dark) {
+  #news .scrollbox {
+    background: #0c1322;     /* 比 --card 更亮，形成层次 */
+    border-color: #2a3a55;
+    box-shadow: var(--shadow-pane);
+  }
+
+  #news-list li .pill {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+  }
+
+  #news-list li .msg {
+    color: color-mix(in srgb, var(--fg) 92%, transparent); /* 略提亮，增强可读性 */
   }
 }
