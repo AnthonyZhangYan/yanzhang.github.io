@@ -319,3 +319,12 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 .when .yr{ font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+.logos{ display:flex; gap:16px; align-items:center; margin-top:10px; }
+.logos img{
+  height:28px; /* 也可 24~32 自行微调 */
+  filter: grayscale(100%);
+  opacity:.8;
+  transition: filter .2s ease, opacity .2s ease, transform .2s ease;
+}
+.logos a:hover img{ filter:none; opacity:1; transform: translateY(-1px); }
