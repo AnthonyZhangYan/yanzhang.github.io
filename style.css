@@ -84,10 +84,10 @@ body {
   body {
     background-image:
       linear-gradient(to bottom,
-        rgba(15, 23, 42, 0.06),   /* 顶部阴影 */
-        rgba(15, 23, 42, 0.00) 55%),
-      radial-gradient(1200px 520px at 50% 0px,
-        rgba(15, 23, 42, 0.08),   /* 顶部居中晕影 */
+        rgba(15, 23, 42, 0.12),   /* 顶部阴影 */
+        rgba(15, 23, 42, 0.00) 60%),
+      radial-gradient(1200px 600px at 50% 0px,
+        rgba(15, 23, 42, 0.12),   /* 顶部居中晕影 */
         transparent 70%);
     background-repeat: no-repeat;
     background-attachment: fixed;
