@@ -31,7 +31,7 @@
   --radius-pane: 12px;
   --news-pane-h: 180px;
   --pubs-pane-h: 360px;
-  --globe-max: 260px;
+  --globe-max: 120px;
 }
 
 @media (prefers-color-scheme: dark) {
