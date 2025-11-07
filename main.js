@@ -11,6 +11,7 @@ const PROFILE={
 };
 
 const MY_NAMES=['Yan Zhang','Y. Zhang','Y Zhang'];
+const CLUSTRMAPS_SITE = 'https://clustrmaps.com/site/1c8ez';
 const byId=id=>document.getElementById(id);
 function highlightAuthors(s=''){
   return MY_NAMES.reduce((h,n)=>h.replace(new RegExp('\\b'+n.replace('.','\\.')+'\\b','g'),`<span class="me">${n}</span>`),s);
@@ -157,7 +158,14 @@ loadPubs();
     // 只保留我们这只小画布
     host.innerHTML = '';
     host.appendChild(cvs);
-  
+
+    // 覆盖 ClustrMaps 默认点击：直接去自己的站点统计页
+    cvs.style.cursor = 'pointer';
+    cvs.addEventListener('click', (e) => {
+      e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation?.();
+      window.open('https://clustrmaps.com/site/1c8ez', '_blank', 'noopener');
+    }, { capture: true });
+
     if (originalRoot && originalRoot !== host) originalRoot.style.display = 'none';
   
     // 保险：Visitors 区域里，凡是不在 #globe-host 里的多余画布一律隐藏
