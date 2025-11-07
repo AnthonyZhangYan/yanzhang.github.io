@@ -64,6 +64,7 @@
     --scroll-thumb: rgba(255, 255, 255, .35);
     --scroll-thumb-hover: rgba(255, 255, 255, .55);
     --scroll-track: rgba(255, 255, 255, .10);
+    --globe-max: 120px;
   }
 }
 
