@@ -414,6 +414,3 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   height: 100% !important;
   display: block;
 }
-
-/* 兜底：#visitors 里，除了 #globe-host 之外的任何 ClustrMaps 生成容器都不显示 */
-#visitors #clstr_globe ~ div { display: none !important; }
