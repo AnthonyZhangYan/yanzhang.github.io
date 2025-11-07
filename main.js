@@ -11,7 +11,6 @@ const PROFILE={
 };
 
 const MY_NAMES=['Yan Zhang','Y. Zhang','Y Zhang'];
-const CLUSTRMAPS_SITE = 'https://clustrmaps.com/site/1c8ez';
 const byId=id=>document.getElementById(id);
 function highlightAuthors(s=''){
   return MY_NAMES.reduce((h,n)=>h.replace(new RegExp('\\b'+n.replace('.','\\.')+'\\b','g'),`<span class="me">${n}</span>`),s);
@@ -97,13 +96,14 @@ selSort.addEventListener('change', ()=>{
 });
 
 loadPubs();
-// ---- News: split "YYYY-MM: message" into [date pill][message] ----
+
+// ---- News formatting ----
 (function formatNews(){
   const ul = document.getElementById('news-list');
   if (!ul) return;
   ul.querySelectorAll('li').forEach(li=>{
     const raw = li.textContent.trim();
-    const parts = raw.split(/[:：]\s*/); // 支持 : 和 ：
+    const parts = raw.split(/[:：]\s*/);
     if (parts.length >= 2) {
       const date = parts[0];
       let msg  = parts.slice(1).join(': ');
@@ -117,36 +117,35 @@ loadPubs();
 
 // --- Mount & Resize ClustrMaps Globe (robust) ---
 (function mountClustrGlobe(){
-  const script = document.getElementById('clstr_globe');
-  const srcHolder = document.querySelector('#clstr_globe + div');
-  const host = document.getElementById('globe-host');            // 我们可控的展示位置
+  const host = document.getElementById('globe-host');
   if (!host) return;
 
-  // 把 ClustrMaps 生成的 <canvas> 搬到 #globe-host，并清理内联尺寸
+  // 从 <script id="clstr_globe"> 的 src 提取站点 token
+  function getClustrToken(){
+    const scriptEl =
+      document.getElementById('clstr_globe') ||
+      document.querySelector('script[src*="clustrmaps.com/globe.js"]');
+    try{
+      if (!scriptEl) return '';
+      const u = new URL(scriptEl.src, window.location.href);
+      return u.searchParams.get('d') || '';
+    }catch{ return ''; }
+  }
+
   function moveCanvasIfReady() {
-    const host = document.getElementById('globe-host');
-    if (!host) return false;
-  
-    // 1) 优先：第三方脚本插入的兄弟容器 / 你的备选容器
     const holder =
       document.querySelector('#clstr_globe + div') ||
       document.getElementById('clustrmaps-globe');
-  
-    // 2) 在 holder 里找 canvas；找不到就只在 Visitors 区域兜底找
-    let cvs =
-      (holder && holder.querySelector && holder.querySelector('canvas')) || null;
-  
+
+    let cvs = (holder && holder.querySelector && holder.querySelector('canvas')) || null;
     if (!cvs) {
       const all = document.querySelectorAll('#visitors canvas');
-      for (const c of all) {
-        if (!host.contains(c)) { cvs = c; break; }
-      }
+      for (const c of all) { if (!host.contains(c)) { cvs = c; break; } }
     }
     if (!cvs) return false;
-  
-    // 记录原父元素，等会把它隐藏（避免保留那只“巨型地球”）
+
     const originalRoot = cvs.parentElement;
-  
+
     // 交给 CSS 控制尺寸
     cvs.removeAttribute('width');
     cvs.removeAttribute('height');
@@ -154,42 +153,34 @@ loadPubs();
     cvs.style.height = '100%';
     cvs.style.maxWidth  = '100%';
     cvs.style.maxHeight = '100%';
-  
-    // 只保留我们这只小画布
+
     host.innerHTML = '';
     host.appendChild(cvs);
 
-    // 覆盖 ClustrMaps 默认点击：直接去自己的站点统计页
+    // 计算个人统计页链接（按 token）
+    const token = getClustrToken();
+    const CLM_TARGET = token
+      ? `https://clustrmaps.com/visits/map?d=${encodeURIComponent(token)}`
+      : 'https://clustrmaps.com';
+
+    // 覆盖第三方点击：直达个人统计页
     cvs.style.cursor = 'pointer';
     cvs.addEventListener('click', (e) => {
       e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation?.();
-      window.open('https://clustrmaps.com/site/1c8ez', '_blank', 'noopener');
+      window.open(CLM_TARGET, '_blank', 'noopener');
     }, { capture: true });
 
     if (originalRoot && originalRoot !== host) originalRoot.style.display = 'none';
-  
-    // 保险：Visitors 区域里，凡是不在 #globe-host 里的多余画布一律隐藏
     document.querySelectorAll('#visitors canvas').forEach(x => {
       if (!host.contains(x)) x.style.display = 'none';
     });
-  
     return true;
   }
 
-  // 1) 页面上可能已经生成
-  if (moveCanvasIfReady(srcHolder)) return;
+  if (moveCanvasIfReady()) return;
 
-  // 2) 若未生成，监听 DOM 变化（库异步插入时触发）
   const mo = new MutationObserver(() => {
-    const holder = document.querySelector('#clstr_globe + div');
-    if (moveCanvasIfReady(holder)) mo.disconnect();
+    if (moveCanvasIfReady()) mo.disconnect();
   });
   mo.observe(document.body, { childList: true, subtree: true });
-
-  // 3) 兜底：有些版本会插到父节点里，额外监听全局
-  const mo2 = new MutationObserver(() => {
-    const holder = document.querySelector('#clstr_globe + div');
-    if (moveCanvasIfReady(holder)) mo2.disconnect();
-  });
-  mo2.observe(document.body, { childList: true, subtree: true });
 })();
