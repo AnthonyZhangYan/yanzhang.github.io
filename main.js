@@ -119,7 +119,7 @@ loadPubs();
   const script = document.getElementById('clstr_globe');
   if (!script) return;
 
-  const TARGET = 360; // 想要的直径：改这里即可 (px)
+  const TARGET = 120; // 想要的直径：改这里即可 (px)
 
   function apply() {
     const host = script.nextElementSibling; // 真实容器是脚本的下一个兄弟元素
