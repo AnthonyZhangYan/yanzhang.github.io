@@ -167,16 +167,21 @@
     <!-- Visitors (ClustrMaps Globe) -->
     <section id="visitors">
       <h2>Visitors</h2>
-      <div class="globe-card">
-        <div id="clustrmaps-globe"></div>
-        <script
-          type="text/javascript"
-          id="clstr_globe"
-          src="//clustrmaps.com/globe.js?d=jmYBVa5aBISv54K1XCkCeTHvHYHqpY12_TQO_Zzrc0"
-          async>
-        </script>
-        <noscript>Enable JavaScript to see the visitor globe.</noscript>
+    
+      <!-- 我们自己的尺寸可控容器 -->
+      <div class="globe-wrap">
+        <div id="globe-host" aria-label="Visitors globe"></div>
       </div>
+    
+      <!-- ClustrMaps 的挂载容器：隐藏，只负责生成 -->
+      <div id="clustrmaps-globe" style="display:none"></div>
+      <script
+        type="text/javascript"
+        id="clstr_globe"
+        src="//clustrmaps.com/globe.js?d=jmYBVa5aBISv54K1XCkCeTHvHYHqpY12_TQO_Zzrc0"
+        async>
+      </script>
+      <noscript>Enable JavaScript to see the visitor globe.</noscript>
     </section>
 
     <footer>
