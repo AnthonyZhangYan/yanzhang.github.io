@@ -113,3 +113,40 @@ loadPubs();
     }
   });
 })();
+
+// --- Resize ClustrMaps Globe to a fixed pixel size (no cropping) ---
+(function resizeClustrGlobe(){
+  const script = document.getElementById('clstr_globe');
+  if (!script) return;
+
+  const TARGET = 360; // 想要的直径：改这里即可 (px)
+
+  function apply() {
+    const host = script.nextElementSibling; // 真实容器是脚本的下一个兄弟元素
+    if (!host) return false;
+
+    host.style.width = TARGET + 'px';
+    host.style.height = TARGET + 'px';
+    host.style.margin = '0 auto';
+    host.style.display = 'block';
+
+    const cvs = host.querySelector('canvas');
+    if (cvs) {
+      // 样式尺寸
+      cvs.style.width = '100%';
+      cvs.style.height = '100%';
+      // Canvas 内部像素尺寸（关键，否则只是拉伸/裁切）
+      cvs.width = TARGET;
+      cvs.height = TARGET;
+      return true;
+    }
+    return false;
+  }
+
+  // 立即尝试一次（有些情况下已插入）
+  if (apply()) return;
+
+  // 监听插入（脚本异步加载时使用）
+  const mo = new MutationObserver(() => { if (apply()) mo.disconnect(); });
+  mo.observe(script.parentNode, { childList: true });
+})();
