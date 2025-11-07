@@ -387,13 +387,7 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   aspect-ratio: 1 / 1;
   margin: 0 auto;
   display: block;
-  /* 你喜欢的话也可以加个卡片外观：
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  box-shadow: var(--shadow-card);
-  padding: 10px;
-  */
+  position: relative;
 }
 
 /* 让托管点内部的画布铺满容器 */
