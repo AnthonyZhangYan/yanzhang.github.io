@@ -119,7 +119,7 @@ loadPubs();
   const script = document.getElementById('clstr_globe');
   const srcHolder = document.querySelector('#clstr_globe + div');
   const host = document.getElementById('globe-host');            // 我们可控的展示位置
-  if (!script || !srcHolder || !host) return;
+  if (!host) return;
 
   // 把 ClustrMaps 生成的 <canvas> 搬到 #globe-host，并清理内联尺寸
   function moveCanvasIfReady(root){
