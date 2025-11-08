@@ -366,6 +366,33 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   .seal{ width:32px; height:32px; }
 }
 
+/* ---- Top-left dropdown menu ---- */
+.nav{ display:none !important; }   /* 隐藏原胶囊导航 */
+
+.menu{
+  position: fixed; top: 14px; left: 14px; z-index: 1000;
+}
+.menu-toggle{
+  appearance: none; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--card); color: var(--fg); padding: 8px 12px; font-size: 14px;
+  box-shadow: var(--shadow-card); cursor: pointer;
+}
+.menu-toggle:focus-visible{ outline: 2px solid color-mix(in srgb, var(--link) 60%, transparent); outline-offset: 2px; }
+
+.menu-list{
+  position: absolute; margin: 8px 0 0 0; padding: 6px;
+  list-style: none; background: var(--card); color: var(--fg);
+  border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow-pane);
+  min-width: 180px; display: none;
+}
+.menu.open .menu-list{ display: block; }
+
+.menu-list li{ margin: 0; }
+.menu-list a{
+  display: block; padding: 8px 10px; border-radius: 8px; color: var(--fg); text-decoration: none;
+}
+.menu-list a:hover{ background: var(--label-bg); color: var(--link); }
+
 /* ==== Visitors Globe (JS 控制尺寸) ==== */
 #visitors h2{
   font-size: 20px;
