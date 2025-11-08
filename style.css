@@ -107,17 +107,21 @@ body {
   }
 }
 
-/* 全局最大内容宽度：960–1200 之间，优先占 92vw */
+/* 版心：优先占 92vw，上限 1200；下限 320 以适配手机 */
 .container{
-  max-width: clamp(960px, 92vw, 1200px);
+  width: min(92vw, 1200px);
+  max-width: 1200px;       /* 冗余保护，可留可不留 */
   margin: 0 auto;
-  padding: 28px 24px 120px;   /* 两侧略加一点内边距，避免顶边 */
+  padding: clamp(12px, 3.5vw, 28px) clamp(12px, 4vw, 28px) 120px;
 }
 
-/* 超宽屏时再放大一点也行（可选） */
+/* 超宽屏可再放大一点（可选） */
 @media (min-width: 1600px){
-  .container{ max-width: 1280px; }
+  .container{ width: min(88vw, 1280px); }
 }
+
+/* 保证内嵌媒体在小屏不溢出 */
+img, video, iframe { max-width: 100%; height: auto; }
 
 header { display: flex; align-items: center; gap: 22px; margin-bottom: 18px; }
 
